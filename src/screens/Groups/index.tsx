@@ -6,14 +6,18 @@ import { Button } from "@components/Button";
 
 import { useState } from "react";
 import { FlatList } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Container } from "./styles";
-import { List } from "phosphor-react-native";
 
 export function Groups() {
-  const [groups, setGroups] = useState<string[]>([
-    'Grupo 01'
-  ]);
+  const [groups, setGroups] = useState<string[]>([]);
+
+  const navigation = useNavigation();
+
+  function handleNewGroup() {
+    navigation.navigate('new');
+  }
 
   return (
     <Container>
@@ -36,8 +40,8 @@ export function Groups() {
       />
 
       <Button 
-        title="Criar nova turma."
-        type="SECONDARY"
+        title="Criar nova turma"
+        onPress={handleNewGroup}
       />
     </Container>
   );
