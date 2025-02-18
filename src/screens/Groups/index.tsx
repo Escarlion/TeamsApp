@@ -37,6 +37,7 @@ export function Groups() {
 
       <Button 
         title="Criar nova turma."
+        type="SECONDARY"
       />
     </Container>
   );

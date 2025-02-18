@@ -2,32 +2,34 @@ import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 //Define que o type pode ser Primary OU Secondary
-export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY';
+export type ButtonTypeStyleProps = "PRIMARY" | "SECONDARY";
 
 type Props = {
-    type: ButtonTypeStyleProps
-}
+  type: ButtonTypeStyleProps;
+};
 
-//Utiliza variaveis tipadas 
-export const Container = styled(TouchableOpacity) <Props>`
-    flex: 1;
+//Utiliza variaveis tipadas
+export const Container = styled(TouchableOpacity)<Props>`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 
-    justify-content: center;
-    align-items: center;
+  //previne que o tamanho seja influenciado
+  min-height: 56px;
+  max-height: 56px;
 
-    //previne que o tamanho seja influenciado 
-    min-height: 56px;
-    max-height: 56px;
+  //acessa o type utilizando as Props e o usa para determinar a cor do botão
+  //NÃO APAGAR A LINHA COMENTADA ABAIXO, SE NÃO O BOTÃO FICA SEM FUNDO (???????)
+  //background-color: red;
+  background-color: ${({ theme, type }) =>
+    type === "PRIMARY" ? theme.COLORS.GREEN_700 : theme.COLORS.RED_DARK};
 
-    //acessa o type utilizando as Props e o usa para determinar a cor do botão
-    background-color: ${({ theme, type }) => type === 'PRIMARY' ? theme.COLORS.GREEN_700 : theme.COLORS.RED_DARK};
-
-    border-radius: 6px;    
+  border-radius: 6px;
 `;
 
 export const Title = styled.Text`
-    font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
-    font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
 
-    color: ${({ theme }) => theme.COLORS.WHITE};
+  color: ${({ theme }) => theme.COLORS.WHITE};
 `;
