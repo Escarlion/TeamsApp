@@ -1,6 +1,7 @@
 import { Container, Form, HeaderList, NumbersOfPlayers } from "./styles";
 import { FlatList } from "react-native";
 import { useState } from "react";
+import { useRoute } from "@react-navigation/native";
 
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
@@ -11,16 +12,25 @@ import { PlayerCard } from "@components/PlayerCard/indes";
 import { ListEmpty } from "@components/ListEmpty";
 import { Button } from "@components/Button";
 
+type RouteParams = {
+  group: string;
+}
+
 export function Players() {
   // usa "Time A" como estado inicial
   const [team, setTeam] = useState("Time A");
   const [players, setPlayers] = useState([  ]);
 
+  //pega um parametro vindo da rota de navegação
+  const route = useRoute();
+  //aplica a tipagem na variavel
+  const { group } = route.params as RouteParams;
+
   return (
     <Container>
       <Header showBackButton />
       <Highlight
-        title="Nome da turma"
+        title={group}
         subtitle="adicione participantes e separe os grupos!"
       />
       <Form>
